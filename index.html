@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Customer Churn Prediction</h2>
+    <form action="{{ url_for('predict') }}" method="POST">
+        
+        <!-- Gender -->
+        <label for="feature1">Gender:</label>
+        <select id="feature1" name="feature1" required>
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+        </select><br><br>
+        
+        <!-- Senior Citizen -->
+        <label for="feature2">Senior Citizen:</label>
+        <select id="feature2" name="feature2" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Partner -->
+        <label for="feature3">Partner:</label>
+        <select id="feature3" name="feature3" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Dependents -->
+        <label for="feature4">Dependents:</label>
+        <select id="feature4" name="feature4" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Tenure -->
+        <label for="feature5">Tenure (months):</label>
+        <input type="number" id="feature5" name="feature5" min="0" placeholder="e.g., 12" required><br><br>
+        
+        <!-- Phone Service -->
+        <label for="feature6">Phone Service:</label>
+        <select id="feature6" name="feature6" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Online Security -->
+        <label for="feature7">Online Security:</label>
+        <select id="feature7" name="feature7" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Online Backup -->
+        <label for="feature8">Online Backup:</label>
+        <select id="feature8" name="feature8" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Device Protection -->
+        <label for="feature9">Device Protection:</label>
+        <select id="feature9" name="feature9" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Tech Support -->
+        <label for="feature10">Tech Support:</label>
+        <select id="feature10" name="feature10" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Streaming TV -->
+        <label for="feature11">Streaming TV:</label>
+        <select id="feature11" name="feature11" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Streaming Movies -->
+        <label for="feature12">Streaming Movies:</label>
+        <select id="feature12" name="feature12" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Paperless Billing -->
+        <label for="feature13">Paperless Billing:</label>
+        <select id="feature13" name="feature13" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Monthly Charges -->
+        <label for="feature14">Monthly Charges:</label>
+        <input type="number" id="feature14" name="feature14" min="0" step="0.01" placeholder="e.g., 50.00" required><br><br>
+        
+        <!-- Total Charges -->
+        <label for="feature15">Total Charges:</label>
+        <input type="number" id="feature15" name="feature15" min="0" step="0.01" placeholder="e.g., 1500.00" required><br><br>
+        
+        <!-- No Phone Service -->
+        <label for="feature16">No Phone Service:</label>
+        <select id="feature16" name="feature16" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Fiber Optic -->
+        <label for="feature17">Fiber Optic:</label>
+        <select id="feature17" name="feature17" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- No Internet Service -->
+        <label for="feature18">No Internet Service:</label>
+        <select id="feature18" name="feature18" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Contract: One Year -->
+        <label for="feature19">Contract: One Year:</label>
+        <select id="feature19" name="feature19" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Contract: Two Years -->
+        <label for="feature20">Contract: Two Years:</label>
+        <select id="feature20" name="feature20" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Payment Method: Credit Card -->
+        <label for="feature21">Payment Method: Credit Card:</label>
+        <select id="feature21" name="feature21" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Payment Method: Electronic Check -->
+        <label for="feature22">Payment Method: Electronic Check:</label>
+        <select id="feature22" name="feature22" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+        
+        <!-- Payment Method: Mailed Check -->
+        <label for="feature23">Payment Method: Mailed Check:</label>
+        <select id="feature23" name="feature23" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+
+        <!-- Encoded Customer ID -->
+        <label for="feature24">Encoded Customer ID:</label>
+        <input type="number" id="feature24" name="feature24" min="0" placeholder="e.g., 12345" required><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+    
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+</html>
